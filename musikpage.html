@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+    <style type="text/css">
+  body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            background-image: 
+                linear-gradient(90deg, rgba(200,200,200,0.1) 1px, transparent 1px),
+                linear-gradient(rgba(200,200,200,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #333;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(255,255,255,0.8);
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+      </style>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>G.E.M.</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./aboutpage.html">About</a></li>
+                <li><a href="./musikpage.html">Music</a></li>
+                <li><a href="./forbaby.html">ForU</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Body Section -->
+    <main>
+        <section id="home" class="hero">
+            <img src="G.E.M..jpg">
+        </section>
+        <section class="songs">
+            <h2>Music</h2>
+            <style>
+        /* Player Styles - Can be placed in your main CSS file */
+        .music-player {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .player-container {
+            display: flex;
+            gap: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .album-art {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .player-controls {
+            flex: 1;
+        }
+        
+        .song-info {
+            margin-bottom: 15px;
+        }
+        
+        .song-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .artist {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin: 15px 0;
+            cursor: pointer;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: #4a6bff;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s;
+        }
+        
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .play-btn {
+            background: #4a6bff;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .play-btn:hover {
+            background: #3a5bef;
+        }
+        
+        .playlist {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .playlist-item {
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .playlist-item:hover {
+            background: #f0f0f0;
+        }
+        
+        .playlist-item.active {
+            background: #e0e8ff;
+        }
+        
+        .playlist-art {
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        
+        .playlist-info {
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .playlist-title {
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .playlist-artist {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Music Player - Copy this div to your website -->
+    <div class="music-player" id="musicPlayer">
+        <div class="player-container">
+            <img src="" alt="Album Cover" class="album-art" id="albumArt">
+            <div class="player-controls">
+                <div class="song-info">
+                    <div class="song-title" id="songTitle">Select a song</div>
+                    <div class="artist" id="artist">Artist</div>
+                </div>
+                
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div class="time-info">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+                
+                <div class="controls">
+                    <button class="play-btn" id="playBtn">▶</button>
+                    <div id="nowPlaying">Not playing</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="playlist" id="playlist">
+            <!-- Songs will be added here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // ========== CONFIGURATION ========== //
+        // Add your songs here (up to 40)
+        const songs = [
+            {
+                title: "再见",
+                artist: "G.E.M.",
+                cover: "https://ts1.tc.mm.bing.net/th/id/R-C.3d37fce024ae62396f853160c9b49d4d?rik=uO02%2bBn06Bm8Lg&riu=http%3a%2f%2fp2.music.126.net%2fkVwk6b8Qdya8oDyGDcyAVA%3d%3d%2f1364493930777368.jpg&ehk=23umZ11Qbk3xC3jMTNDznAm4E6ShVq9URYV0YtmRrTQ%3d&risl=&pid=ImgRaw&r=0",
+                file: "file:///D:/Iris/%E5%86%8D%E8%A7%81.mp3",
+            },
+            {
+                title: "多远都要在一起",
+                artist: "G.E.M.",
+                cover: "https://ts1.tc.mm.bing.net/th/id/R-C.3d37fce024ae62396f853160c9b49d4d?rik=uO02%2bBn06Bm8Lg&riu=http%3a%2f%2fp2.music.126.net%2fkVwk6b8Qdya8oDyGDcyAVA%3d%3d%2f1364493930777368.jpg&ehk=23umZ11Qbk3xC3jMTNDznAm4E6ShVq9URYV0YtmRrTQ%3d&risl=&pid=ImgRaw&r=0",
+                file: "file:///D:/Iris/%E5%A4%9A%E8%BF%9C%E9%83%BD%E8%A6%81%E5%9C%A8%E4%B8%80%E8%B5%B7.mp3"
+            },
+            {
+                title: "新的心跳",
+                artist: "G.E.M.",
+                cover: "https://ts1.tc.mm.bing.net/th/id/R-C.3d37fce024ae62396f853160c9b49d4d?rik=uO02%2bBn06Bm8Lg&riu=http%3a%2f%2fp2.music.126.net%2fkVwk6b8Qdya8oDyGDcyAVA%3d%3d%2f1364493930777368.jpg&ehk=23umZ11Qbk3xC3jMTNDznAm4E6ShVq9URYV0YtmRrTQ%3d&risl=&pid=ImgRaw&r=0",
+                file: "file:///D:/Iris/%E6%96%B0%E7%9A%84%E5%BF%83%E8%B7%B3.mp3"
+            },
+            
+            {
+                title: "于是",
+                artist: "G.E.M.",
+                cover: "https://ts1.tc.mm.bing.net/th/id/R-C.3d37fce024ae62396f853160c9b49d4d?rik=uO02%2bBn06Bm8Lg&riu=http%3a%2f%2fp2.music.126.net%2fkVwk6b8Qdya8oDyGDcyAVA%3d%3d%2f1364493930777368.jpg&ehk=23umZ11Qbk3xC3jMTNDznAm4E6ShVq9URYV0YtmRrTQ%3d&risl=&pid=ImgRaw&r=0",
+                file: "file:///D:/Iris/%E4%BA%8E%E6%98%AF.mp3"
+            },
+            {
+                title: "查克靠近",
+                artist: "G.E.M.",
+                cover: "https://ts1.tc.mm.bing.net/th/id/R-C.3d37fce024ae62396f853160c9b49d4d?rik=uO02%2bBn06Bm8Lg&riu=http%3a%2f%2fp2.music.126.net%2fkVwk6b8Qdya8oDyGDcyAVA%3d%3d%2f1364493930777368.jpg&ehk=23umZ11Qbk3xC3jMTNDznAm4E6ShVq9URYV0YtmRrTQ%3d&risl=&pid=ImgRaw&r=0",
+                file: "file:///D:/Iris/%E6%9F%A5%E5%85%8B%E9%9D%A0%E8%BF%91.mp3"
+            },
+            {
+                title: "倒数",
+                artist: "G.E.M.",
+                cover: "https://ts1.tc.mm.bing.net/th/id/R-C.dd05fac2c5b51f2cad37dbd0c6492792?rik=uMyKC1KozZ281A&riu=http%3a%2f%2fimge.kugou.com%2fstdmusic%2f20180810%2f20180810201109688687.jpg&ehk=yyQqTp0rHcq0pTNRPw8tNyUABuuhfyHjKlbN9Uv7Bnk%3d&risl=&pid=ImgRaw&r=0",
+                file: "file:///D:/Iris/%E5%80%92%E6%95%B0.mp3"
+            },
+            {
+                title: "毒苹果",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618374851-f8b799eb2751f09.jpg",
+                file: "file:///D:/Iris/%E6%AF%92%E8%8B%B9%E6%9E%9C.mp3"
+            },
+            {
+                title: "那一夜",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618374851-f8b799eb2751f09.jpg",
+                file: "file:///D:/Iris/%E9%82%A3%E4%B8%80%E5%A4%9C.mp3"
+            },
+            {
+                title: "摩天动物园",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618372770-daba8b6be54f845.jpg",
+                file: "file:///D:/Iris/%E6%91%A9%E5%A4%A9%E5%8A%A8%E7%89%A9%E5%9B%AD.mp3"
+            },
+            {
+                title: "句号",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618372770-daba8b6be54f845.jpg",
+                file: "file:///D:/Iris/%E5%8F%A5%E5%8F%B7.mp3"
+            },
+            {
+                title: "很久以后",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618372770-daba8b6be54f845.jpg",
+                file: "file:///D:/Iris/%E5%BE%88%E4%B9%85%E4%BB%A5%E5%90%8E.mp3"
+            },
+            {
+                title: "透明",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618372770-daba8b6be54f845.jpg",
+                file: "file:///D:/Iris/%E9%80%8F%E6%98%8E.mp3"
+            },
+            {
+                title: "Walk on Water",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618372770-daba8b6be54f845.jpg",
+                file: "file:///D:/Iris/Walk%20on%20Water.mp3"
+            },
+            {
+                title: "Fly Away",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618372770-daba8b6be54f845.jpg",
+                file: "file:///D:/Iris/Fly%20Away.mp3"
+            },
+            {
+                title: "差不多姑娘",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618372770-daba8b6be54f845.jpg",
+                file: "file:///D:/Iris/%E5%B7%AE%E4%B8%8D%E5%A4%9A%E5%A7%91%E5%A8%98.mp3"
+            },
+            {
+                title: "好想好想你",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618372770-daba8b6be54f845.jpg",
+                file: "file:///D:/Iris/%E5%A5%BD%E6%83%B3%E5%A5%BD%E6%83%B3%E4%BD%A0.mp3"
+            },
+            {
+                title: "别勉强",
+                artist: "G.E.M.",
+                cover: "https://www.yuehaishibei.com/wp-content/uploads/2021/04/1618372770-daba8b6be54f845.jpg",
+                file: "file:///D:/Iris/%E5%88%AB%E5%8B%89%E5%BC%BA.mp3"
+            },
+            {
+                title: "孤独",
+                artist: "G.E.M.",
+                cover: "https://tse2-mm.cn.bing.net/th/id/OIP-C.bl9n-HnB6VTC_UHBDFsPbwHaHa?rs=1&pid=ImgDetMain",
+                file: "file:///D:/Iris/%E5%AD%A4%E7%8B%AC.mp3"
+            },
+            {
+                title: "少年与海",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "https://lp-sycdn.kuwo.cn/5b92467c862dd3fc897ec01799c81c22/67fb378c/resource/n2/1/69/1011787318.mp3?bitrate$128&from=vip"
+            },
+            {
+                title: "HELL",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "file:///D:/Iris/Hell.mp3"
+            },
+            {
+                title: "只有我和你的地方",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "file:///D:/Iris/%E5%8F%AA%E6%9C%89%E6%88%91%E5%92%8C%E4%BD%A0%E7%9A%84%E5%9C%B0%E6%96%B9.mp3"
+            },
+            {
+                title: "冰河时代",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "file:///D:/Iris/%E5%86%B0%E6%B2%B3%E6%97%B6%E4%BB%A3.mp3"
+            },
+            {
+                title: "难受曲",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "file:///D:/Iris/%E9%9A%BE%E5%8F%97%E6%9B%B2.mp3"
+            },
+            {
+                title: "GLORIA",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "file:///D:/Iris/Gloria.mp3"
+            },
+            {
+                title: "Find You",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "file:///D:/Iris/Find%20You.mp3"
+            },
+            {
+                title: "让世界暂停一分钟",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "file:///D:/Iris/%E8%AE%A9%E4%B8%96%E7%95%8C%E6%9A%82%E5%81%9C%E4%B8%80%E5%88%86%E9%92%9F.mp3"
+            },
+            {
+                title: "夜的尽头",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "file:///D:/Iris/%E5%A4%9C%E7%9A%84%E5%B0%BD%E5%A4%B4.mp3"
+            },
+            {
+                title: "天空没有极限",
+                artist: "G.E.M.",
+                cover: "https://audio-y.com/wp-content/uploads/2022/09/b812c8fcc3cec3fdfc0374801adcc33f8794a5c289b3.jpeg",
+                file: "file:///C:/Users/huawei/Downloads/%E5%A4%A9%E7%A9%BA%E6%B2%A1%E6%9C%89%E6%9E%81%E9%99%90.mp3"
+            },
+            // Add more songs as needed...
+            // Format: {title, artist, cover, file}
+        ];
+        
+        // ========== PLAYER CODE ========== //
+        // Elements
+        const audio = new Audio();
+        const playBtn = document.getElementById('playBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const songTitleEl = document.getElementById('songTitle');
+        const artistEl = document.getElementById('artist');
+        const albumArtEl = document.getElementById('albumArt');
+        const playlistEl = document.getElementById('playlist');
+        const nowPlayingEl = document.getElementById('nowPlaying');
+        
+        // Player state
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        
+        // Initialize playlist
+        function initPlaylist() {
+            playlistEl.innerHTML = '';
+            
+            songs.forEach((song, index) => {
+                const item = document.createElement('div');
+                item.className = 'playlist-item';
+                item.innerHTML = `
+                    <img src="${song.cover}" alt="${song.title}" class="playlist-art">
+                    <div class="playlist-info">
+                        <div class="playlist-title">${song.title}</div>
+                        <div class="playlist-artist">${song.artist}</div>
+                    </div>
+                `;
+                
+                item.addEventListener('click', () => {
+                    loadSong(index);
+                    playSong();
+                });
+                
+                playlistEl.appendChild(item);
+            });
+        }
+        
+        // Load a song
+        function loadSong(index) {
+            currentSongIndex = index;
+            const song = songs[index];
+            
+            songTitleEl.textContent = song.title;
+            artistEl.textContent = song.artist;
+            albumArtEl.src = song.cover;
+            audio.src = song.file;
+            
+            // Update active item in playlist
+            document.querySelectorAll('.playlist-item').forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                    nowPlayingEl.textContent = `Now Playing: ${song.title}`;
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+        
+        // Play song
+        function playSong() {
+            isPlaying = true;
+            audio.play();
+            playBtn.textContent = '❚❚';
+        }
+        
+        // Pause song
+        function pauseSong() {
+            isPlaying = false;
+            audio.pause();
+            playBtn.textContent = '▶';
+        }
+        
+        // Update progress bar
+        function updateProgress() {
+            const { currentTime, duration } = audio;
+            const progressPercent = (currentTime / duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            
+            // Update time display
+            currentTimeEl.textContent = formatTime(currentTime);
+        }
+        
+        // Set progress when clicked
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        }
+        
+        // Format time (seconds to MM:SS)
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+        
+        // Next song
+        function nextSong() {
+            currentSongIndex++;
+            if (currentSongIndex >= songs.length) {
+                currentSongIndex = 0;
+            }
+            loadSong(currentSongIndex);
+            if (isPlaying) playSong();
+        }
+        
+        // Event listeners
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                playSong();
+            } else {
+                pauseSong();
+            }
+        });
+        
+        audio.addEventListener('timeupdate', updateProgress);
+        audio.addEventListener('ended', nextSong);
+        progressContainer.addEventListener('click', setProgress);
+        
+        // Initialize
+        initPlaylist();
+        loadSong(0);
+    </script>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025. Love·U.</p>
+    </footer>
+</body>
+</html>
